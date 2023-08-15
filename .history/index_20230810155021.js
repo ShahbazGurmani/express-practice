@@ -101,17 +101,15 @@
 
 
 //attach mongoDB with node js .........................................................
-const {MongoClient} = require('mongodb');
-const url = 'mongodb://127.0.0.1:27017';
-const database = 'mango-practice';
-
-const client = new MongoClient(url);
-
+const MongoClient = require('mongodb').MongoClient;
+const url = "mongodb://localhost:27017";
+const connection = new MongoClient(url);
+const database = 'mongo-practice';
 
 //craeting a function for getting data from database;
 async function getData()
 {
-    let result = await client.connect();
+    let result = await connection.connect();
     let db = result.db(database);
     let collection = db.collection('users');
     let response = await collection.find({}).toArray();

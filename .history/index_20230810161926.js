@@ -102,8 +102,8 @@
 
 //attach mongoDB with node js .........................................................
 const {MongoClient} = require('mongodb');
-const url = 'mongodb://127.0.0.1:27017';
-const database = 'mango-practice';
+const url = 'mongodb://localhost:27017';
+const database = 'ecom';
 
 const client = new MongoClient(url);
 

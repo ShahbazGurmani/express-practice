@@ -71,51 +71,23 @@
 
 
 //start for creating middle ware:
-// const express = require('express');
-// const app = express();
+const express = require('express');
+const app = express();
 
-// const reqFilter = require('./middleWare');
-
-// //apply middleware on specific routs:
-// const routs = express.Router();
-// routs.use(reqFilter);
-// // app.use(reqFilter);
-// routs.get('' ,(req, resp)=>{
-
-//     resp.send("welcome to home page");
-// })
-
-// routs.get('/user' ,(req, resp)=>{
-
-//     resp.send("welcome to user page");
-// })
-
-// app.get('/contact', (req, resp)=>{
-
-//     resp.send("welcome to contact page");
-// })
-
-// app.use('/',routs)
-// app.listen(4300)
-
-
-
-//attach mongoDB with node js .........................................................
-const {MongoClient} = require('mongodb');
-const url = 'mongodb://127.0.0.1:27017';
-const database = 'mango-practice';
-
-const client = new MongoClient(url);
-
-
-//craeting a function for getting data from database;
-async function getData()
-{
-    let result = await client.connect();
-    let db = result.db(database);
-    let collection = db.collection('users');
-    let response = await collection.find({}).toArray();
-    console.log(response);
+//here we are adding middleware
+const reqFilter=(req,resp,next)=>{
+    console.log('reqFilter');
+    next();
 }
 
-getData();
+app.use(reqFilter);
+app.get('' ,(req, resp)=>{
+
+    resp.send("welcome to home page");
+})
+
+app.get('/user' ,(req, resp)=>{
+
+    resp.send("welcome to user page");
+})
+app.listen(4300)

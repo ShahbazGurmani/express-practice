@@ -100,23 +100,29 @@
 
 
 
+//attach mongoDB with node js .........................................................
+const { name } = require('ejs');
+const {MongoClient} = require('mongodb');
+const url = 'mongodb://127.0.0.1:27017';
+const database = 'mango-practice';
 
+const client = new MongoClient(url);
+
+
+//craeting a function for getting data from database;
+async function dbConnection()
+{
+    let result = await client.connect();
+    let db = result.db(database);
+     return db.collection('users');
+    // let response = await collection.find({}).toArray();
+    // console.log(response);
+}
 // console.log(dbConnection);
 
+dbConnection().then((resp)=>{
+    resp.find({name:'shahbaz gurmani'}).toArray().then((data)=>{
+        console.log(data);
+    })
 
-// 1st method ......................................................
-// dbConnection().then((resp)=>{
-//     resp.find({name:'shahbaz gurmani'}).toArray().then((data)=>{
-//         console.log(data);
-//     })
-
-// })
-//2nd method..........................................................
-const dbConnection = require('./mongodb');
-const main =async ()=>{
-    let data = await dbConnection();
-    data =await data.find().toArray();
-    console.log(data); 
-}
-
-main();
+})

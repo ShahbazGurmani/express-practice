@@ -44,7 +44,7 @@ app.delete('/:_id',async(req,resp)=>{
 app.get('/:key',async(req,resp)=>{
    let data = await users.find(
     {
-        "$or$":[
+        "$or":[
             {"name":{$regex:req.params.key}},
             {"city":{$regex:req.params.key}}
         ]

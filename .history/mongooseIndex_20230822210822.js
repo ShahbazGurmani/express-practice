@@ -41,17 +41,8 @@ app.delete('/:_id',async(req,resp)=>{
 })
 
 //seacrch api 
-app.get('/:key',async(req,resp)=>{
-   let data = await users.find(
-    {
-        "$or$":[
-            {"name":{$regex:req.params.key}},
-            {"city":{$regex:req.params.key}}
-        ]
-    }
-   );
-
-   resp.send(data);
+app.get('/:key',(req,resp)=>{
+    resp.send("ok");
 })
 
 app.listen(4200);

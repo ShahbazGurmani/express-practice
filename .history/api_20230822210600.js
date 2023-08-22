@@ -42,5 +42,8 @@ app.delete('/:id',async(req,resp)=>{
 
 })
 
-
+//seacrch api 
+app.get('/',(req,resp)=>{
+    resp.send("ok");
+})
 app.listen('4300');
